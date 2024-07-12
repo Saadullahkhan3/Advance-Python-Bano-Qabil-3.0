@@ -1,4 +1,4 @@
-# Assignment 2
+# Assignment 3
 ## Automate Sending Email
 ### Motivational Quote on Every Monday via Email
 
