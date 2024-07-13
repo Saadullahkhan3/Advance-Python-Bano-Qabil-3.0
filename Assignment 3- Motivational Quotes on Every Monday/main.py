@@ -123,9 +123,9 @@ _________________________________________________________
     today_week_day = datetime.today().weekday()
 
     # Checking if not monday close the program, else run the script
-    # if not today_week_day == 1:
-    #     print("Today is not Monday, this program only works on Monday!\n")
-    #     exit()
+    if not today_week_day == 1:
+        print("Today is not Monday, this program only works on Monday!\n")
+        exit()
 
     # Objects
     mail_sender = SendMail(SMTP_SERVICE_EMAIL, SMTP_SERVICE_EMAIL_PASSWORD)
