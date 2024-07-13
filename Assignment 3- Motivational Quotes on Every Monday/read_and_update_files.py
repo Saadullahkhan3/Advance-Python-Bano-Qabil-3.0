@@ -90,18 +90,19 @@ class ReadUpdateFiles:
         ---
         `tuple: str` -> (Author, Quote)
         '''
-        # Extracting the quote
-        last_sent_quote_index = readed_quotes_dict["last_send_quote_index"]
-
-        quote_list = readed_quotes_dict["QUOTES"]
-
-        author, quote = quote_list[last_sent_quote_index+1]     # Returns Value
+        quote_list: list = readed_quotes_dict["QUOTES"]
+        last_sent_quote_index: int = readed_quotes_dict["last_send_quote_index"]
 
         # Updating last sent quote no, if all quote are sent then, 0 will be set
-        if len(quote_list) > last_sent_quote_index:
-            readed_quotes_dict["last_send_quote_index"] =+ 1
+        if (len(quote_list) - 1)  > last_sent_quote_index:
+            readed_quotes_dict["last_send_quote_index"] += 1
+            last_sent_quote_index += 1
         else:
             readed_quotes_dict["last_send_quote_index"] = 0
+            last_sent_quote_index = 0
+        
+        # Extracting the quote
+        author, quote = quote_list[last_sent_quote_index]     # Returns Value
 
         # Writig to the File
         with open(quotes_json_file_path, "w") as f:
