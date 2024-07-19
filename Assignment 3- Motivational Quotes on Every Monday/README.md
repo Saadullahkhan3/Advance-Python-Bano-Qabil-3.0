@@ -4,7 +4,7 @@
 
 This program is created as automating sending emails. In this program we can send emails through `SMTP` with SSL encryption that makes it secure. **Gmail** uses as SMTP service.
 
-It sends Motivational Quotes emails only when week day is 1 or Monday as mention in its name. You can simply run this program by satisfying its dependencies and run `main.py` with the other given files as these are necessary.
+It sends Motivational Quotes emails only when week day is 0 or Monday as mention in its name. You can simply run this program by satisfying its dependencies and run `main.py` with the other given files as these are necessary.
 
 ### Dependencies
 - `Python 3 or newer` -> Python Programming Language, version 3 or newer
