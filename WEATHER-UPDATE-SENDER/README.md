@@ -30,6 +30,7 @@ Change the configuration in `main.py`. read below guidance:
 - `SHEETY_END_POINT`: Sheety API to get the data from google sheet, Register for free: [Sheety](https://sheety.co/)
     - Make sure your data will be in below format:<br/>
     <img src="./examples_for_readme/google-sheet-data-format-example.png" width="300">
+    
     - Sheet name is default: `Sheet1`
 
 ## Formatted Email:
