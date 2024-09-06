@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "27ea3493-afd6-465c-a798-1d842e73feeb",
+		"name": "BillManage - BillOpr",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37531549"
+	},
+	"item": [
+		{
+			"name": "1 - Split Evenly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"noOfPeople\": 4,\n    \"total\": 320\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bill_opr/split-evenly/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bill_opr",
+						"split-evenly",
+						""
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Split Unevenly",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"peoples\": [\r\n        {\r\n            \"name\": \"Saad\",\r\n            \"money\": 1000\r\n        },\r\n        {\r\n            \"name\": \"Mohib\",\r\n            \"money\": 2000\r\n        },\r\n        {\r\n            \"name\": \"Saif\",\r\n            \"money\": 3000\r\n        }\r\n    ],\r\n    \"total\": 6000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bill_opr/split-unevenly/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bill_opr",
+						"split-unevenly",
+						""
+					]
+				},
+				"description": "### HTTP POST /bill_opr/split-unevenly/\n\nThis endpoint is used to split a bill unevenly among different people.\n\n#### Request\n\nThe request should be sent in the JSON format with the following parameters:\n\n- `peoples` (array of objects) - An array containing objects with `name` (string) and `money` (number) representing the name of the person and the amount of money they contributed.\n    \n- `total` (number) - The total amount of the bill.\n    \n\nExample:\n\n``` json\n{\n    \"peoples\": [\n        {\"name\": \"John\", \"money\": 50},\n        {\"name\": \"Alice\", \"money\": 30}\n    ],\n    \"total\": 80\n}\n#### Response\nUpon successful execution, the response will be in the JSON format with the following schema:\n```json\n{\n    \"unevenly_splited\": {\n        \"<name>\": <amount>,\n        \"<name>\": <amount>,\n        ...\n    }\n}\n\n ```\n\nWhere each key-value pair represents the name of the person and the amount they owe or are owed after unevenly splitting the bill.\n\nExample:\n\n``` json\n{\n    \"unevenly_splited\": {\n        \"Saad\": 0,\n        \"Mohib\": 0,\n        \"Saif\": 0\n    }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Tip & Tax with even split",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noOfPeople\": 4,\r\n    \"total\": 400,\r\n    \"tax_rate\": 18,\r\n    \"tip\": 80\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bill_opr/split-including-tip-tax/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bill_opr",
+						"split-including-tip-tax",
+						""
+					]
+				},
+				"description": "### Split Bill Including Tip and Tax\n\nThis endpoint allows you to split a bill, including tax and tip, among a specified number of people.\n\n#### Request Body\n\n- `noOfPeople` (number): The total number of people among whom the bill needs to be split.\n    \n- `total` (number): The total amount of the bill.\n    \n- `tax_rate` (number): The tax rate as a percentage.\n    \n- `tip` (number): The tip amount.\n    \n\n#### Response\n\nThe response is in JSON format and has the following schema:\n\n``` json\n{\n  \"evenly_splited\": 0\n}\n\n ```\n\nThe `evenly_splited` property represents the amount that each person needs to pay after splitting the bill evenly."
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Discount with even split",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noOfPeople\": 4,\r\n    \"total\": 400,\r\n    \"discount_rate\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bill_opr/split-with-discount/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bill_opr",
+						"split-with-discount",
+						""
+					]
+				},
+				"description": "This endpoint is used to split a bill with a discount among a specified number of people. The HTTP POST request should be made to [http://127.0.0.1:8000/bill_opr/split-with-discount/](http://127.0.0.1:8000/bill_opr/split-with-discount/) with the following payload in the raw request body:\n\n``` json\n{\n    \"noOfPeople\": 0,\n    \"total\": 0,\n    \"discount_rate\": 0\n}\n\n ```\n\n- `noOfPeople`: The number of people among whom the bill is to be split.\n    \n- `total`: The total amount of the bill before applying any discount.\n    \n- `discount_rate`: The discount rate to be applied to the bill.\n    \n\nThe response to this request will have a status code of 200 and a content type of application/json. The response body will contain the amount that each person should pay after splitting the bill evenly:\n\n``` json\n{\n    \"evenly_splited\": 0\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Shared items with uneven split",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"shared_items\": [\r\n        {\r\n            \"item\": \"Biryani\",\r\n            \"peoples\": [\r\n                {\r\n                    \"name\": \"Saad\",\r\n                    \"money\": 1000\r\n                },\r\n                {\r\n                    \"name\": \"Mohib\",\r\n                    \"money\": 2000\r\n                }\r\n            ],\r\n            \"total\": 3000\r\n        },\r\n        {\r\n            \"item\": \"Karai\",\r\n            \"peoples\": [\r\n                {\r\n                    \"name\": \"Saad\",\r\n                    \"money\": 3000\r\n                },\r\n                {\r\n                    \"name\": \"Mohib\",\r\n                    \"money\": 0\r\n                }\r\n            ],\r\n            \"total\": 3000\r\n        },\r\n        {\r\n            \"item\": \"Tikka\",\r\n            \"peoples\": [\r\n                {\r\n                    \"name\": \"Saad\",\r\n                    \"money\": 1500\r\n                },\r\n                {\r\n                    \"name\": \"Mohib\",\r\n                    \"money\": 2400\r\n                },\r\n                {\r\n                    \"name\": \"Shahzad\",\r\n                    \"money\": 5000\r\n                },\r\n                {\r\n                    \"name\": \"Saif\",\r\n                    \"money\": 1300\r\n                }\r\n            ],\r\n            \"total\": 10000\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bill_opr/uneven-split-with-shared-items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bill_opr",
+						"uneven-split-with-shared-items",
+						""
+					]
+				},
+				"description": "### POST /bill_opr/uneven-split-with-shared-items/\n\nThis endpoint allows the user to perform an uneven split of a bill with shared items.\n\n#### Request Body\n\n- raw (application/json)\n    \n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| shared_items | array | An array of shared items containing details about the item, people involved, and total amount. Each shared item has the following properties: |\n| \\- item | string | The name of the shared item. |\n| \\- peoples | array | An array of objects containing details about the people involved in the shared item, including their name and the amount of money they owe. |\n| \\- name | string | The name of the person involved. |\n| \\- money | number | The amount of money the person owes for the shared item. |\n| \\- total | number | The total amount for the shared item. |\n\n#### Response (200 - OK)\n\nThe response is in JSON format and follows the schema below:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"shared_items\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"Biryani\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"money\": {\n                  \"type\": \"number\"\n                }\n              }\n            }\n          },\n          \"total\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n    },\n    \"wrong_items\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  }\n}\n\n ```\n\nThe response contains the following properties:\n\n- shared_items: An array of objects representing the shared items, where each item contains the name of the item and the total amount, along with details of the people involved and the amount they owe.\n    \n    - Biryani: An array of objects containing details about the people involved in sharing the \"Biryani\" item, including their name and the amount of money they owe.\n        \n    - total: The total amount for the shared item.\n        \n- wrong_items: An array of strings representing any wrong items."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
