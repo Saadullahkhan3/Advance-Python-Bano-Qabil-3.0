@@ -2,7 +2,7 @@
 
 Bill Management API for you that helps you to maintain you bills when you are enjoying with others, so don't take burden to manage bills, use this API to make you life simple!
 
-### Note: Postman export is provided thath have each API with its showcase and explanation!
+### Note: Postman export is provided that have each API with its showcase and explanation!
 
 
 ##  **What it includes:**
