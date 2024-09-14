@@ -18,7 +18,7 @@ class StudentViewSet(viewsets.ModelViewSet):
     # SORRY
     '''
     I explicity created this method, but I realised that there is no need to do below stuff, I wasted my time a lot
-    SORRY, I am not removing it, I kept is to remmeber my fault!
+    SORRY, I am not removing it, I kept is to remember my fault!
     '''
 
     # # GET
