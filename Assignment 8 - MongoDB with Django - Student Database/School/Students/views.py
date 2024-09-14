@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 
 # pk is unique id for each Student entry.
-
+ 
 
 class StudentViewSet(viewsets.ModelViewSet):
     # Use as reference for Database, we can customize it to filter data
