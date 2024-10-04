@@ -14,8 +14,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 # Connecting to MongoDB atlas cluster
 from mongoengine import connect
 
-uri = "mongodb+srv://Saadullah:mIaDscOXXNRmqpTT@cluster0.kk8gc.mongodb.net/"
-database = "MyMongo"
+# Make sure to allow all or only yours IP address in MongoDB atlas!
+# Change uri and database variables
+uri = "mongodb+srv://<Your-Registered-User-Name>:<Your-Registered-User-Password>@cluster0.kk8gc.mongodb.net/"
+database = "<Your-Database-Name>"
 
 connect(
     db=database,
